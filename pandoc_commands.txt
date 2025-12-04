@@ -1,0 +1,38 @@
+bash
+#!/bin/bash
+
+# Convert Russian specification to PDF
+echo "Converting Russian specification to PDF..."
+pandoc heroes_path_spec.md \
+  -o heroes_path_spec_ru.pdf \
+  --pdf-engine=xelatex \
+  -V mainfont="DejaVu Sans" \
+  -V geometry:margin=2cm \
+  --toc
+
+# Convert English specification to PDF
+echo "Converting English specification to PDF..."
+pandoc heroes_path_spec_en.md \
+  -o heroes_path_spec_en.pdf \
+  --pdf-engine=xelatex \
+  -V geometry:margin=2cm \
+  --toc
+
+# Convert to HTML for web viewing
+echo "Creating HTML versions..."
+pandoc heroes_path_spec.md -o heroes_path_spec_ru.html
+pandoc heroes_path_spec_en.md -o heroes_path_spec_en.html
+
+# Convert to DOCX (Word)
+echo "Creating DOCX versions..."
+pandoc heroes_path_spec.md -o heroes_path_spec_ru.docx
+pandoc heroes_path_spec_en.md -o heroes_path_spec_en.docx
+
+echo "Conversion complete!"
+echo "Generated files:"
+echo "- heroes_path_spec_ru.pdf"
+echo "- heroes_path_spec_en.pdf"
+echo "- heroes_path_spec_ru.html"
+echo "- heroes_path_spec_en.html"
+echo "- heroes_path_spec_ru.docx"
+echo "- heroes_path_spec_en.docx"
